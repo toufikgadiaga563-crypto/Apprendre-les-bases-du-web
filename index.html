@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les bases du web</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text: #10233d;
+            --muted: #5b6b82;
+            --border: #dfe7f5;
+            --accent: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #eef5ff 0%, var(--bg) 100%);
+            color: var(--text);
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: #dbeafe;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem 0 3rem;
+        }
+
+        .hero h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .buttons a {
+            display: inline-block;
+            border-radius: 10px;
+            padding: 0.9rem 1.5rem;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .buttons a:hover {
+            transform: translateY(-1px);
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 0.9rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        .primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .secondary {
+            background: #e0f2fe;
+            color: #0f172a;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .lesson {
+            margin-top: 1rem;
+        }
+
+        .lesson h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-intro {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 0;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin: 0 0 3rem;
+        }
+
+        .roadmap a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .roadmap .card {
+            height: 100%;
+        }
+
+        .roadmap .card:hover {
+            border-color: var(--primary);
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .code-example {
+            overflow-x: auto;
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 14px;
+            padding: 1.25rem;
+            line-height: 1.65;
+            font-size: 0.9rem;
+        }
+
+        .code-example code {
+            font-family: Consolas, monospace;
+        }
+
+        .profile-preview {
+            background: #eff6ff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        .profile-preview h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .profil-demo {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 24px;
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .profil-demo h3 {
+            margin-top: 0;
+            color: #1d4ed8;
+        }
+
+        .profil-demo p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .profil-demo .badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .profil-demo .badge:hover {
+            background-color: #bfdbfe;
+        }
+
+        .profil-demo button {
+            display: block;
+            margin-top: 1rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .profil-demo button:hover {
+            background: var(--primary-dark);
+        }
+
+        .js-demo p {
+            min-height: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 2.5rem 1fr;
+            gap: 1rem;
+            align-items: start;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+        }
+
+        .step-number {
+            display: grid;
+            place-items: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin: 0 0 0.4rem;
+            color: var(--primary-dark);
+        }
+
+        .step p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .tag-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .tag-list .card {
+            padding: 1.25rem;
+        }
+
+        .tag-list code {
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .exercise {
+            background: #ecfdf5;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 2rem 1rem 3rem;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Mon cours du web</div>
+            <div class="menu">
+                <a href="#cours">Cours HTML</a>
+                <a href="#css">Cours CSS</a>
+                <a href="#javascript">Cours JavaScript</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Les bases du développement web</h1>
+                <p>
+                    Apprends les trois outils qui travaillent ensemble pour créer un site :
+                    HTML structure le contenu, CSS définit son apparence et JavaScript ajoute
+                    des interactions. Chaque leçon reprend l'exemple concret d'Ulrich.
+                </p>
+                <div class="buttons">
+                    <a class="primary" href="#cours">Commencer le cours</a>
+                </div>
+            </div>
+
+            <aside class="panel">
+                <h2>Le trio du web</h2>
+                <div class="counter">HTML + CSS + JS</div>
+                <p>HTML est un langage de balisage ; CSS décrit les styles et JavaScript ajoute la logique interactive.</p>
+            </aside>
+        </section>
+
+        <section class="roadmap" aria-label="Plan du cours">
+            <a href="#cours">
+                <article class="card">
+                    <h3>1. HTML — le contenu</h3>
+                    <p>Construire la structure de la fiche d'Ulrich avec des balises.</p>
+                </article>
+            </a>
+            <a href="#css">
+                <article class="card">
+                    <h3>2. CSS — le style</h3>
+                    <p>Ajouter couleurs, espaces, formes et mise en page à cette fiche.</p>
+                </article>
+            </a>
+            <a href="#javascript">
+                <article class="card">
+                    <h3>3. JavaScript — l'action</h3>
+                    <p>Faire réagir la fiche quand on clique sur son bouton.</p>
+                </article>
+            </a>
+        </section>
+
+        <section class="lesson" id="cours">
+            <h2>1. HTML : structurer le contenu</h2>
+            <p class="lesson-intro">
+                HTML signifie « langage de balisage hypertexte ». Il décrit le rôle du contenu avec
+                des balises : titres, paragraphes, listes, liens et images. Ce n'est pas un langage
+                de programmation ; c'est le squelette de la page.
+            </p>
+
+            <pre class="code-example"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ma page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Bonjour !&lt;/h1&gt;
+    &lt;p&gt;Voici ma première page.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <div class="cards">
+                <article class="card">
+                    <h3>&lt;head&gt; : les informations</h3>
+                    <p>Cette partie contient les informations de la page, comme son titre et l'encodage des caractères.</p>
+                </article>
+                <article class="card">
+                    <h3>&lt;body&gt; : le contenu</h3>
+                    <p>Tout ce qui doit apparaître dans la page — titres, textes, images et liens — va dans cette partie.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="lesson" id="exemple-ulrich">
+            <h2>Exemple HTML : la page d'Ulrich</h2>
+            <p class="lesson-intro">
+                Voici le code complet d'une petite page de présentation. Le navigateur lit ce code
+                de haut en bas et construit la page visible à droite.
+            </p>
+
+            <div class="lesson-grid">
+                <pre class="code-example"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;La page d'Ulrich&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;article class="profil-demo"&gt;
+      &lt;h3&gt;Bonjour, je m'appelle Ulrich !&lt;/h3&gt;
+      &lt;p&gt;J'apprends les bases du développement web.&lt;/p&gt;
+      &lt;h4&gt;Ce que j'apprends&lt;/h4&gt;
+      &lt;ul&gt;
+        &lt;li&gt;HTML pour le contenu&lt;/li&gt;
+        &lt;li&gt;CSS pour le style&lt;/li&gt;
+        &lt;li&gt;JavaScript pour les interactions&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;span class="badge"&gt;Débutant en développement web&lt;/span&gt;
+      &lt;p&gt;
+        &lt;a href="https://developer.mozilla.org/fr/docs/Web/HTML"&gt;
+          Découvrir la documentation HTML
+        &lt;/a&gt;
+      &lt;/p&gt;
+      &lt;button type="button"&gt;Dire bonjour à Ulrich&lt;/button&gt;
+    &lt;/article&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <div class="profile-preview profil-demo">
+                    <h3>Bonjour, je m'appelle Ulrich !</h3>
+                    <p>J'apprends les bases du développement web.</p>
+                    <h4>Ce que j'apprends</h4>
+                    <ul>
+                        <li>HTML pour le contenu</li>
+                        <li>CSS pour le style</li>
+                        <li>JavaScript pour les interactions</li>
+                    </ul>
+                    <span class="badge">Débutant en développement web</span>
+                    <p><a href="https://developer.mozilla.org/fr/docs/Web/HTML">Découvrir la documentation HTML</a></p>
+                    <button type="button">Dire bonjour à Ulrich</button>
+                </div>
+            </div>
+
+            <h3>Le code expliqué étape par étape</h3>
+            <div class="steps">
+                <article class="step">
+                    <span class="step-number">1</span>
+                    <div>
+                        <h3><code>&lt;!DOCTYPE html&gt;</code> : annoncer HTML moderne</h3>
+                        <p>Cette déclaration dit au navigateur d'interpréter le document comme du HTML moderne. Elle se place tout en haut et n'a pas de balise fermante.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">2</span>
+                    <div>
+                        <h3><code>&lt;html lang="fr"&gt;</code> : ouvrir la page</h3>
+                        <p><code>&lt;html&gt;</code> contient toute la page. L'attribut <code>lang="fr"</code> précise que le contenu est en français. La balise se ferme tout à la fin avec <code>&lt;/html&gt;</code>.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">3</span>
+                    <div>
+                        <h3><code>&lt;head&gt;</code> : préparer les informations</h3>
+                        <p>Le contenu de <code>&lt;head&gt;</code> donne des informations au navigateur ; il ne s'affiche généralement pas dans la page elle-même. <code>&lt;meta charset="UTF-8"&gt;</code> permet d'afficher correctement les accents. La balise <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> aide la page à s'adapter à la largeur des téléphones et tablettes.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">4</span>
+                    <div>
+                        <h3><code>&lt;title&gt;</code> : nommer l'onglet</h3>
+                        <p><code>&lt;title&gt;La page d'Ulrich&lt;/title&gt;</code> définit le texte affiché dans l'onglet du navigateur. Il se trouve dans <code>&lt;head&gt;</code>.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">5</span>
+                    <div>
+                        <h3><code>&lt;body&gt;</code> : écrire ce qui sera visible</h3>
+                        <p>Tout le contenu principal va entre <code>&lt;body&gt;</code> et <code>&lt;/body&gt;</code>. Dans l'exemple, le titre, le texte, la liste et le lien apparaissent dans cette partie.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">6</span>
+                    <div>
+                        <h3><code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code> et <code>&lt;h2&gt;</code> : structurer le texte</h3>
+                        <p><code>&lt;h1&gt;</code> est le titre principal de la page. <code>&lt;p&gt;</code> crée un paragraphe. <code>&lt;h2&gt;</code> est un sous-titre qui annonce une nouvelle partie.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">7</span>
+                    <div>
+                        <h3><code>&lt;ul&gt;</code> et <code>&lt;li&gt;</code> : créer une liste</h3>
+                        <p><code>&lt;ul&gt;</code> ouvre une liste à puces. Chaque <code>&lt;li&gt;</code> représente un élément. On ferme chaque élément, puis la liste, avant de continuer la page.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">8</span>
+                    <div>
+                        <h3><code>&lt;a href="..."&gt;</code> : ajouter un lien</h3>
+                        <p><code>&lt;a&gt;</code> crée un lien et l'attribut <code>href</code> contient son adresse. Le texte entre la balise ouvrante et <code>&lt;/a&gt;</code> est le texte cliquable.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">9</span>
+                    <div>
+                        <h3>Fermer les balises dans le bon ordre</h3>
+                        <p>La plupart des éléments ont une balise ouvrante, par exemple <code>&lt;p&gt;</code>, et une balise fermante avec une barre oblique, <code>&lt;/p&gt;</code>. Les balises imbriquées se ferment dans l'ordre inverse de leur ouverture.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="lesson" id="balises">
+            <h2>HTML : les balises essentielles</h2>
+            <p class="lesson-intro">
+                Une balise indique au navigateur le rôle du contenu. Par exemple, <code>&lt;p&gt;</code>
+                signifie « paragraphe ».
+            </p>
+
+            <div class="tag-list">
+                <article class="card">
+                    <h3><code>&lt;h1&gt;</code> à <code>&lt;h6&gt;</code></h3>
+                    <p>Des titres, du plus important au moins important. Une page a généralement un seul titre principal <code>&lt;h1&gt;</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><code>&lt;p&gt;</code></h3>
+                    <p>Un paragraphe de texte. On écrit le contenu entre <code>&lt;p&gt;</code> et <code>&lt;/p&gt;</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><code>&lt;ul&gt;</code> et <code>&lt;li&gt;</code></h3>
+                    <p><code>&lt;ul&gt;</code> crée une liste à puces ; chaque élément de la liste est placé dans <code>&lt;li&gt;</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><code>&lt;a&gt;</code></h3>
+                    <p>Crée un lien. L'attribut <code>href</code> indique son adresse, par exemple <code>href="https://example.com"</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><code>&lt;img&gt;</code></h3>
+                    <p>Affiche une image. Ses attributs <code>src</code> et <code>alt</code> indiquent son fichier et une description textuelle.</p>
+                </article>
+                <article class="card">
+                    <h3>Les attributs</h3>
+                    <p>Ils ajoutent des informations à une balise ouvrante, comme <code>lang="fr"</code> ou <code>href="..."</code>.</p>
+                </article>
+            </div>
+
+            <div class="exercise">
+                <strong>Petit exercice pour Ulrich :</strong> dans <code>index.html</code>, remplace
+                le texte d'un paragraphe, ajoute un titre <code>&lt;h2&gt;</code> et une liste
+                <code>&lt;ul&gt;</code> avec trois choses que tu aimerais créer.
+            </div>
+        </section>
+
+        <section class="lesson" id="css">
+            <h2>2. CSS : donner du style à la page</h2>
+            <p class="lesson-intro">
+                CSS signifie « feuilles de style en cascade ». Il décrit l'apparence des éléments
+                HTML : couleurs, tailles, espaces, bordures et disposition. Nous reprenons la fiche
+                d'Ulrich et ajoutons le badge et le bouton que nous utiliserons ensuite en JavaScript.
+            </p>
+
+            <div class="lesson-grid">
+                <pre class="code-example"><code>.profil-demo {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.profil-demo h3 {
+  margin-top: 0;
+  color: #1d4ed8;
+}
+
+.profil-demo .badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.profil-demo .badge:hover {
+  background-color: #bfdbfe;
+}
+
+.profil-demo button {
+  margin-top: 16px;
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+}</code></pre>
+
+                <div class="profil-demo">
+                    <h3>Bonjour, je m'appelle Ulrich !</h3>
+                    <p>J'apprends les bases du développement web.</p>
+                    <ul>
+                        <li>HTML pour le contenu</li>
+                        <li>CSS pour le style</li>
+                        <li>JavaScript pour les interactions</li>
+                    </ul>
+                    <span class="badge">Débutant en développement web</span>
+                    <button type="button">Dire bonjour à Ulrich</button>
+                </div>
+            </div>
+
+            <h3>Le CSS expliqué étape par étape</h3>
+            <div class="steps">
+                <article class="step">
+                    <span class="step-number">1</span>
+                    <div>
+                        <h3>Écrire une règle CSS</h3>
+                        <p>Une règle commence par un sélecteur, suivi d'accolades. Les déclarations entre <code>{</code> et <code>}</code> indiquent les styles à appliquer.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">2</span>
+                    <div>
+                        <h3><code>.profil-demo</code> : choisir l'élément à styliser</h3>
+                        <p>Le point devant <code>profil-demo</code> sélectionne tout élément HTML qui possède <code>class="profil-demo"</code>. On appelle cela un sélecteur de classe.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">3</span>
+                    <div>
+                        <h3>Écrire une déclaration : propriété et valeur</h3>
+                        <p>Dans <code>color: #1d4ed8;</code>, <code>color</code> est la propriété et <code>#1d4ed8</code> sa valeur. Chaque déclaration se termine par un point-virgule.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">4</span>
+                    <div>
+                        <h3>Régler la taille et les espaces</h3>
+                        <p><code>max-width</code> limite la largeur, <code>padding</code> ajoute de l'espace à l'intérieur et <code>margin</code> ajoute de l'espace à l'extérieur. <code>margin: 0 auto;</code> centre la fiche horizontalement.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">5</span>
+                    <div>
+                        <h3>Ajouter couleurs et bordures</h3>
+                        <p><code>background-color</code> définit la couleur de fond, <code>color</code> celle du texte, <code>border</code> ajoute une bordure et <code>border-radius</code> arrondit les coins.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">6</span>
+                    <div>
+                        <h3><code>.profil-demo h3</code> : viser un élément à l'intérieur</h3>
+                        <p>Un espace entre les sélecteurs signifie « l'élément à l'intérieur de ». Cette règle ne vise donc que le titre <code>&lt;h3&gt;</code> qui se trouve dans la fiche d'Ulrich.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">7</span>
+                    <div>
+                        <h3><code>.badge:hover</code> : réagir au passage de la souris</h3>
+                        <p><code>:hover</code> est un état spécial : la règle s'applique quand le pointeur passe sur le badge. Ici, sa couleur de fond change.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">8</span>
+                    <div>
+                        <h3>Relier le CSS à la page HTML</h3>
+                        <p>Pour commencer, tu peux écrire le CSS dans une balise <code>&lt;style&gt;</code> placée dans le <code>&lt;head&gt;</code>. Dans un projet plus grand, on le met souvent dans un fichier séparé, puis on le relie avec <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="exercise">
+                <strong>Petit exercice pour Ulrich :</strong> dans la règle <code>.profil-demo h3</code>,
+                change la valeur de <code>color</code>, puis modifie le <code>border-radius</code> de la fiche
+                et observe le résultat.
+            </div>
+        </section>
+
+        <section class="lesson" id="javascript">
+            <h2>3. JavaScript : rendre la page interactive</h2>
+            <p class="lesson-intro">
+                JavaScript ajoute des actions à la page. Nous reprenons la même fiche et son bouton :
+                au clic, le texte du paragraphe change pour afficher un message destiné à Ulrich.
+            </p>
+
+            <div class="lesson-grid">
+                <pre class="code-example"><code>const bouton = document.getElementById("bouton-ulrich");
+const message = document.getElementById("message-ulrich");
+
+bouton.addEventListener("click", function () {
+  message.textContent = "Bonjour Ulrich ! Le bouton fonctionne.";
+});</code></pre>
+
+                <div class="profil-demo js-demo">
+                    <h3>Bonjour, je m'appelle Ulrich !</h3>
+                    <p id="message-ulrich" aria-live="polite">J'apprends les bases du développement web.</p>
+                    <ul>
+                        <li>HTML pour le contenu</li>
+                        <li>CSS pour le style</li>
+                        <li>JavaScript pour les interactions</li>
+                    </ul>
+                    <span class="badge">Débutant en développement web</span>
+                    <button id="bouton-ulrich" type="button">Dire bonjour à Ulrich</button>
+                </div>
+            </div>
+
+            <h3>Le JavaScript expliqué étape par étape</h3>
+            <div class="steps">
+                <article class="step">
+                    <span class="step-number">1</span>
+                    <div>
+                        <h3>Préparer les éléments HTML à relier</h3>
+                        <p>Dans le HTML, écris le paragraphe comme <code>&lt;p id="message-ulrich"&gt;...&lt;/p&gt;</code> et le bouton comme <code>&lt;button id="bouton-ulrich"&gt;Dire bonjour à Ulrich&lt;/button&gt;</code>. Ces identifiants servent de noms uniques pour que JavaScript retrouve les bons éléments.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">2</span>
+                    <div>
+                        <h3><code>document</code> : accéder à la page</h3>
+                        <p><code>document</code> représente la page HTML ouverte dans le navigateur. JavaScript peut s'en servir pour retrouver et modifier les éléments de la page.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">3</span>
+                    <div>
+                        <h3><code>getElementById(...)</code> : retrouver un élément</h3>
+                        <p><code>document.getElementById("bouton-ulrich")</code> cherche l'élément HTML qui a <code>id="bouton-ulrich"</code>. L'identifiant doit correspondre exactement à celui écrit dans le HTML.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">4</span>
+                    <div>
+                        <h3><code>const</code> : garder une référence</h3>
+                        <p><code>const bouton = ...</code> place l'élément retrouvé dans une variable appelée <code>bouton</code>. La deuxième ligne fait la même chose pour le paragraphe du message.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">5</span>
+                    <div>
+                        <h3><code>addEventListener("click", ...)</code> : attendre un clic</h3>
+                        <p>Cette méthode demande au navigateur d'exécuter une action lorsque l'utilisateur clique sur le bouton. <code>"click"</code> est le nom de l'événement surveillé.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">6</span>
+                    <div>
+                        <h3>La fonction : décrire l'action à faire</h3>
+                        <p><code>function () { ... }</code> contient les instructions qui seront exécutées après le clic. Le code à l'intérieur des accolades correspond à l'action.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">7</span>
+                    <div>
+                        <h3><code>textContent</code> : changer le texte</h3>
+                        <p><code>message.textContent = "..."</code> remplace le texte du paragraphe par le nouveau message. Le signe <code>=</code> affecte la valeur située à droite à l'élément situé à gauche.</p>
+                    </div>
+                </article>
+                <article class="step">
+                    <span class="step-number">8</span>
+                    <div>
+                        <h3>Relier JavaScript à HTML</h3>
+                        <p>Le bouton et le paragraphe doivent exister dans le HTML avec les identifiants <code>bouton-ulrich</code> et <code>message-ulrich</code>. Le code JavaScript se place généralement dans une balise <code>&lt;script&gt;</code> à la fin du <code>&lt;body&gt;</code>, pour que les éléments soient déjà chargés.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="exercise">
+                <strong>Petit exercice pour Ulrich :</strong> change le texte dans <code>textContent</code>
+                pour écrire ton propre message. Ensuite, modifie le paragraphe dans HTML et vérifie que le
+                bouton remplace bien son texte quand tu cliques dessus.
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        © <span id="year"></span> - Apprendre le web, étape par étape.
+    </footer>
+
+    <script>
+        const year = document.getElementById('year');
+        year.textContent = new Date().getFullYear();
+
+        const boutonUlrich = document.getElementById('bouton-ulrich');
+        const messageUlrich = document.getElementById('message-ulrich');
+
+        boutonUlrich.addEventListener('click', function () {
+            messageUlrich.textContent = "Bonjour Ulrich ! Le bouton fonctionne.";
+        });
+    </script>
+</body>
+</html>
